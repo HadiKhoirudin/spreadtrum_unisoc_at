@@ -70,27 +70,24 @@ namespace  Unisoc_AT_HadiKIT
                     {
                         if (BitConverter.ToString(PortIO.resp) != "")
                         {
-                            Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
-                            Main.DelegateFunction.RichLogs("Enter Diag Mode   : ", Color.Black, true, false);
-                            Main.DelegateFunction.RichLogs("Success", Color.Lime, true, true);
-                            Main.DelegateFunction.btn_factory.Invoke(new Action(() => { Main.DelegateFunction.btn_factory.Enabled = true; }));
-                            Main.DelegateFunction.btn_backlight.Invoke(new Action(() => { Main.DelegateFunction.btn_backlight.Enabled = true; }));
-                            Main.DelegateFunction.btn_reboot.Invoke(new Action(() => { Main.DelegateFunction.btn_reboot.Enabled = true; }));
-                            if (Main.DelegateFunction.cb_charging.Checked)
-                            {
-                                Console.WriteLine("Charging Battery");
-                                Main.DelegateFunction.RichLogs("Charging Battery   : ", Color.Black, true, false);
-                                PortIO.PortWrite(Properties.Resources.charging);
-                                Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
-                            }
+                            Success();
                         }
                         else
                         {
-                            stop = true;
-                            Main.DelegateFunction.RichTextBox_Clear();
-                            MessageBox.Show("Sending Payload Failed! Please try again...");
-                            Main.DelegateFunction.cb_fastconnect.Invoke(new Action(() => { Main.DelegateFunction.cb_fastconnect.Checked = false; }));
-                            Main.DelegateFunction.cmb_port.Invoke(new Action(() => { Main.DelegateFunction.cmb_port.Text = "Please Activate Fast Connect To Start... "; }));
+                            int retry = 0;
+                            while (retry < 3)
+                            {
+                                Console.WriteLine("Re-Sending Payload : " + retry);
+                                PortIO.PortWrite(Properties.Resources.payload);
+                                Program.Delay(1);
+                                if (BitConverter.ToString(PortIO.resp) != "")
+                                {
+                                    Success();
+                                    break;
+                                }
+                                retry++;
+                            }
+                            Fail();
                         }
                     }
                 }
@@ -154,6 +151,34 @@ namespace  Unisoc_AT_HadiKIT
                 }
             }
             return true;
+        }
+        public static void Success()
+        {
+            Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+            Main.DelegateFunction.RichLogs("Enter Diag Mode   : ", Color.Black, true, false);
+            Main.DelegateFunction.RichLogs("Success", Color.Lime, true, true);
+            Main.DelegateFunction.btn_factory.Invoke(new Action(() => { Main.DelegateFunction.btn_factory.Enabled = true; }));
+            Main.DelegateFunction.btn_backlight.Invoke(new Action(() => { Main.DelegateFunction.btn_backlight.Enabled = true; }));
+            Main.DelegateFunction.btn_reboot.Invoke(new Action(() => { Main.DelegateFunction.btn_reboot.Enabled = true; }));
+            if (Main.DelegateFunction.cb_charging.Checked)
+            {
+                Console.WriteLine("Charging Battery");
+                Main.DelegateFunction.RichLogs("Charging Battery  : ", Color.Black, true, false);
+                PortIO.PortWrite(Properties.Resources.charging);
+                Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+            }
+        }
+        public static void Fail()
+        {
+            if (BitConverter.ToString(PortIO.resp) == "")
+            {
+                stop = true;
+                Main.DelegateFunction.RichTextBox_Clear();
+                MessageBox.Show("Sending Payload Failed! Please try again...");
+                Main.DelegateFunction.cb_fastconnect.Invoke(new Action(() => { Main.DelegateFunction.cb_fastconnect.Checked = false; }));
+                Main.DelegateFunction.cmb_port.Invoke(new Action(() => { Main.DelegateFunction.cmb_port.Text = "Please Activate Fast Connect To Start... "; }));
+            }
+
         }
     }
 }

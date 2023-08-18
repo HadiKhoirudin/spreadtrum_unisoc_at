@@ -18,5 +18,13 @@ namespace  Unisoc_AT_HadiKIT
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
         }
+        public static void Delay(double dblSecs)
+        {
+            DateTime.Now.AddSeconds(0.0000115740740740741d);
+            var dateTime = DateTime.Now.AddSeconds(0.0000115740740740741d);
+            var dateTime1 = dateTime.AddSeconds(dblSecs);
+            while (DateTime.Compare(DateTime.Now, dateTime1) <= 0)
+                Application.DoEvents();
+        }
     }
 }

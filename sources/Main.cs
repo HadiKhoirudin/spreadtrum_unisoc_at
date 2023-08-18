@@ -174,10 +174,11 @@ namespace  Unisoc_AT_HadiKIT
             {
                 if (USBFastConnect.count == 1)
                 {
-                    Main.DelegateFunction.RichLogs("Reboot                : ", Color.Black, true, false);
+                    Main.DelegateFunction.RichLogs("Reboot            : ", Color.Black, true, false);
                     Console.WriteLine("Reboot");
                     PortIO.PortWrite(Properties.Resources.reboot);
                     Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                    Program.Delay(4);
                     cb_fastconnect.Checked = false;
                 }
             }
@@ -188,9 +189,10 @@ namespace  Unisoc_AT_HadiKIT
             {
                 if (USBFastConnect.count == 1)
                 {
-                    Main.DelegateFunction.RichLogs("Factory Reset       : ", Color.Black, true, false);
+                    Main.DelegateFunction.RichLogs("Factory Reset     : ", Color.Black, true, false);
                     PortIO.PortWrite(Properties.Resources.factory);
                     Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                    Program.Delay(4);
                     cb_fastconnect.Checked = false;
                 }
             }
@@ -201,9 +203,10 @@ namespace  Unisoc_AT_HadiKIT
             {
                 if (USBFastConnect.count == 1)
                 {
-                    Main.DelegateFunction.RichLogs("Power Off       : ", Color.Black, true, false);
+                    Main.DelegateFunction.RichLogs("Power Off         : ", Color.Black, true, false);
                     PortIO.PortWrite(Properties.Resources.factory);
                     Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                    Program.Delay(4);
                     cb_fastconnect.Checked = false;
                 }
             }
@@ -214,19 +217,29 @@ namespace  Unisoc_AT_HadiKIT
             {
                 if (USBFastConnect.count == 1)
                 {
-                    Main.DelegateFunction.RichLogs("Read IMEI           : ", Color.Black, true, false);
+                    Main.DelegateFunction.RichLogs("Read IMEI         : ", Color.Black, true, false);
                     PortIO.PortWrite(Properties.Resources.readimei);
-                    Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                    Program.Delay(1);
                     string resp = Encoding.Default.GetString(PortIO.resp);
-                    int offset = resp.IndexOf("Š");
-                    Console.WriteLine("IMEI String : " + resp);
-                    Console.WriteLine("IMEI Offset : " + offset);
+                    if (resp.Contains("Š"))
+                    {
+                        Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                        int offset = resp.IndexOf("Š");
+                        Console.WriteLine("IMEI String : " + resp);
+                        Console.WriteLine("IMEI Offset : " + offset);
 
-                    string IMEI1 = HexToImei(BitConverter.ToString(PortIO.resp.Skip(offset).Take(8).ToArray()));
-                    string IMEI2 = HexToImei(BitConverter.ToString(PortIO.resp.Skip(offset + 8).Take(8).ToArray()));
+                        string IMEI1 = HexToImei(BitConverter.ToString(PortIO.resp.Skip(offset).Take(8).ToArray()));
+                        string IMEI2 = HexToImei(BitConverter.ToString(PortIO.resp.Skip(offset + 8).Take(8).ToArray()));
 
-                    txt_IMEI1.Text = IMEI1;
-                    txt_IMEI2.Text = IMEI2;
+                        txt_IMEI1.Text = IMEI1;
+                        txt_IMEI2.Text = IMEI2;
+                    }
+                    else
+                    {
+                        Main.DelegateFunction.RichLogs("Failed", Color.Crimson, true, true);
+                        txt_IMEI1.Text = "NULL";
+                        txt_IMEI2.Text = "NULL";
+                    }
                 }
             }
         }
