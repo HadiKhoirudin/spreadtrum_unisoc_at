@@ -77,6 +77,7 @@ namespace  Unisoc_AT_HadiKIT
                             int retry = 0;
                             while (retry < 3)
                             {
+                                retry++;
                                 Console.WriteLine("Re-Sending Payload : " + retry);
                                 PortIO.PortWrite(Properties.Resources.payload);
                                 Program.Delay(1);
@@ -85,7 +86,6 @@ namespace  Unisoc_AT_HadiKIT
                                     Success();
                                     break;
                                 }
-                                retry++;
                             }
                             Fail();
                         }
