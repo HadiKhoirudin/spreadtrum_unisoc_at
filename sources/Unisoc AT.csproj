@@ -75,6 +75,7 @@
     <None Include="bin\Debug\payload.bin" />
     <None Include="bin\Debug\reboot.bin" />
     <None Include="Properties\Resources\backlight.bin" />
+    <None Include="Properties\Resources\charging.bin" />
     <None Include="Properties\Resources\factory.bin" />
     <None Include="Properties\Resources\payload.bin" />
     <None Include="Properties\Resources\reboot.bin" />
@@ -87,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\readimei.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

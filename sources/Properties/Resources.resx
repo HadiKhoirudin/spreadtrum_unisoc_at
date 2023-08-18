@@ -121,11 +121,17 @@
   <data name="backlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\backlight.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="charging" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\charging.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="factory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\factory.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="payload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\payload.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="readimei" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\readimei.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="reboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\reboot.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

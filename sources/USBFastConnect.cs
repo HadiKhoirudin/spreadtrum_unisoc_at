@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Management;
+using System.Windows.Forms;
 
 namespace  Unisoc_AT_HadiKIT
 {
@@ -61,23 +61,38 @@ namespace  Unisoc_AT_HadiKIT
                 {
                     if (count == 0)
                     {
+                        FastDisconnect();
                         Main.DelegateFunction.RichLogs("Sending Payload   : ", Color.Black, true, false);
                         Console.WriteLine("Sending Payload");
                         PortIO.PortWrite(Properties.Resources.payload);
                     }
                     if (count == 1)
                     {
-                        Main.DelegateFunction.RichLogs("Enter Diag Mode   : ", Color.Black, true, false);
-                        Main.DelegateFunction.RichLogs("Success", Color.Lime, true, true);
-                        Main.DelegateFunction.btn_factory.Invoke(new Action(() => { Main.DelegateFunction.btn_factory.Enabled = true; }));
-                        Main.DelegateFunction.btn_backlight.Invoke(new Action(() => { Main.DelegateFunction.btn_backlight.Enabled = true; }));
-                        Main.DelegateFunction.btn_reboot.Invoke(new Action(() => { Main.DelegateFunction.btn_reboot.Enabled = true; }));
-                     }
-                    FastDisconnect();
-                }
-                else
-                {
-                    Console.WriteLine("Port Closed....");
+                        if (BitConverter.ToString(PortIO.resp) != "")
+                        {
+                            Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                            Main.DelegateFunction.RichLogs("Enter Diag Mode   : ", Color.Black, true, false);
+                            Main.DelegateFunction.RichLogs("Success", Color.Lime, true, true);
+                            Main.DelegateFunction.btn_factory.Invoke(new Action(() => { Main.DelegateFunction.btn_factory.Enabled = true; }));
+                            Main.DelegateFunction.btn_backlight.Invoke(new Action(() => { Main.DelegateFunction.btn_backlight.Enabled = true; }));
+                            Main.DelegateFunction.btn_reboot.Invoke(new Action(() => { Main.DelegateFunction.btn_reboot.Enabled = true; }));
+                            if (Main.DelegateFunction.cb_charging.Checked)
+                            {
+                                Console.WriteLine("Charging Battery");
+                                Main.DelegateFunction.RichLogs("Charging Battery   : ", Color.Black, true, false);
+                                PortIO.PortWrite(Properties.Resources.charging);
+                                Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                            }
+                        }
+                        else
+                        {
+                            stop = true;
+                            Main.DelegateFunction.RichTextBox_Clear();
+                            MessageBox.Show("Sending Payload Failed! Please try again...");
+                            Main.DelegateFunction.cb_fastconnect.Invoke(new Action(() => { Main.DelegateFunction.cb_fastconnect.Checked = false; }));
+                            Main.DelegateFunction.cmb_port.Invoke(new Action(() => { Main.DelegateFunction.cmb_port.Text = "Please Activate Fast Connect To Start... "; }));
+                        }
+                    }
                 }
             }
 
@@ -88,16 +103,15 @@ namespace  Unisoc_AT_HadiKIT
             {
                 if (found)
                 {
-                    Console.WriteLine("SPD Diag Port Disconnected! ");
                     if (count == 0)
                     {
-                        Main.DelegateFunction.RichLogs("OK", Color.Lime, true, true);
+                        count = 1;
+                        found = false;
+                        PortIO.PortClose();
+                        WatchDisconnected.Stop();
+                        Console.WriteLine("SPD Diag Port Disconnected! ");
                         Main.DelegateFunction.cmb_port.Invoke(new Action(() => { Main.DelegateFunction.cmb_port.Text = "Searching SPD Diag Port..."; }));
                     }
-                    WatchDisconnected.Stop();
-                    PortIO.PortClose();
-                    count++;
-                    found = false;
                 }
             }
         }

@@ -73,6 +73,16 @@ namespace Unisoc_AT_HadiKIT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] charging {
+            get {
+                object obj = ResourceManager.GetObject("charging", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] factory {
             get {
                 object obj = ResourceManager.GetObject("factory", resourceCulture);
@@ -86,6 +96,16 @@ namespace Unisoc_AT_HadiKIT.Properties {
         internal static byte[] payload {
             get {
                 object obj = ResourceManager.GetObject("payload", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] readimei {
+            get {
+                object obj = ResourceManager.GetObject("readimei", resourceCulture);
                 return ((byte[])(obj));
             }
         }

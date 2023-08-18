@@ -1,0 +1,10 @@
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\bin\Debug\Unisoc AT - [HadiK-IT].exe.config
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\bin\Debug\Unisoc AT - [HadiK-IT].exe
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\bin\Debug\Unisoc AT - [HadiK-IT].pdb
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc AT.csproj.AssemblyReference.cache
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc_AT_HadiKIT.Main.resources
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc_AT_HadiKIT.Properties.Resources.resources
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc AT.csproj.GenerateResource.cache
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc AT.csproj.CoreCompileInputs.cache
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc AT - [HadiK-IT].exe
+C:\Users\email\source\repos\spreadtrum_unisoc_at\sources\obj\Debug\Unisoc AT - [HadiK-IT].pdb
