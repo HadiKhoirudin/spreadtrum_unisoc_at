@@ -88,7 +88,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\backlight.bin" />
+    <None Include="Resources\charging.bin" />
+    <None Include="Resources\factory.bin" />
+    <None Include="Resources\payload.bin" />
     <None Include="Resources\readimei.bin" />
+    <None Include="Resources\reboot.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

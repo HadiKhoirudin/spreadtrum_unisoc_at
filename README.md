@@ -7,6 +7,8 @@ Enter diag mode with
 - Wait...
 
 
-[![366669821-24269101319355360-3978892234273597606-n.jpg](https://i.postimg.cc/VkSQFvLk/366669821-24269101319355360-3978892234273597606-n.jpg)](https://postimg.cc/xXS4f0zw)
+[![image-2023-08-18-073705609.png](https://i.postimg.cc/y6TNVxsx/image-2023-08-18-073705609.png)](https://postimg.cc/mht4jbcW)
 
 * Make sure Latest SPD / UNISOC Driver installed before operation.
+
+More Information :  https://www.youtube.com/@HadiK-IT?sub_confirmation=1
